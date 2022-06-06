@@ -1,5 +1,7 @@
 import Header from '@components/Header'
 import ProduceCard from '@components/ProduceCard'
+import ProducesList from '@components/ProducesList'
+
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GlobalStyle from '@styled/globalStyle';
@@ -12,7 +14,8 @@ function App() {
       {/* <GlobalStyle /> */}
       <div className="App">
         <Header icon={LocalGroceryStoreIcon}>Faker shop</Header>
-        <ProduceCard></ProduceCard>
+        <ProducesList />
+        <ProducesList />
       </div>
     </ThemeProvider>
   );

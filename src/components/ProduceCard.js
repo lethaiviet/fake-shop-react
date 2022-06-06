@@ -17,7 +17,7 @@ const center = css`
 
 const StyledCard = styled(Card)`
     ${center}
-    max-width: 400px;
+    max-width: 500px;
 `
 const StyledCardContent = styled(CardContent)`
     ${center}
