@@ -23,7 +23,7 @@ const StyledCardContent = styled(CardContent)`
     ${center}
 `
 
-export default function ProduceCard() {
+export default function ProduceCard({ props }) {
     return (
         <StyledCard>
             <CardMedia
@@ -32,18 +32,18 @@ export default function ProduceCard() {
                     maxHeight: "300px"
                 }}
                 component="img"
-                image="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                alt="Live from space album cover"
+                image={props.image}
+                alt={props.title}
             />
             <StyledCardContent>
                 <Typography gutterBottom variant="headline" component="h2">
-                    Fjallraven
+                    {props.title}
                 </Typography>
                 <Typography component="p">
-                    men's clothing
+                    {props.category}
                 </Typography>
                 <Typography component="p">
-                    $109.95
+                    {`$${props.price}`}
                 </Typography>
             </StyledCardContent>
         </StyledCard>
