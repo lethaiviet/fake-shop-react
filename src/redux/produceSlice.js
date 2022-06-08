@@ -7,6 +7,7 @@ const initialState = {
     produces: [],
     produce: {},
     loading: false,
+    errorMsg: null
 }
 
 
@@ -25,8 +26,9 @@ export const produceSlice = createSlice({
             state.loading = false
             state.produces = payload
         },
-        [getProduces.rejected]: (state) => {
+        [getProduces.rejected]: (state, action) => {
             state.loading = false
+            state.errorMsg = action.payload
         },
     }
 })

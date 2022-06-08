@@ -7,10 +7,17 @@ const GET_PRODUCES_API = BASE_URL + "/products/"
 
 const getProduces = createAsyncThunk(
     'produce/getProduces',
-    async () => {
-        const res = await axios.get(GET_PRODUCES_API)
-        return res.data
+
+    async (_, thunkApi) => {
+        try {
+            const res = await axios.get(GET_PRODUCES_API)
+            return res.data
+        }
+        catch (err) {
+            return thunkApi.rejectWithValue(err.response.data)
+        }
     }
+
 )
 
 export { getProduces }

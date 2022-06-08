@@ -4,13 +4,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectProduces, } from '@/redux/produceSlice'
 import { getProduces } from '@/redux/produceThunk'
 import { useEffect } from 'react'
+import { useSnackbar } from 'notistack';
 
 export default function ProducesList() {
     const { produces, loading } = useSelector(selectProduces)
+    const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProduces())
+        const handleGetProducesAPI = async () => {
+            try {
+                await dispatch(getProduces()).unwrap()
+            }
+            catch (err) {
+                enqueueSnackbar(`Error ${err}`, { variant: 'error' });
+            }
+        }
+
+        handleGetProducesAPI();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -22,8 +33,8 @@ export default function ProducesList() {
                     } >
                         <Grid container spacing={2}>
                             {
-                                produces.map(x => (<Grid item xs={12} sm={6} md={4} lg={3}>
-                                    <ProduceCard props={x} />
+                                produces.map(x => (<Grid key={x.id} item xs={12} sm={6} md={4} lg={3}>
+                                    <ProduceCard props={x} key={x.id} />
                                 </Grid>)
                                 )
                             }
