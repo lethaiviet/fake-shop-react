@@ -36,7 +36,7 @@ export default function ProduceCard({ props }) {
                 alt={props.title}
             />
             <StyledCardContent>
-                <Typography gutterBottom variant="headline" component="h2">
+                <Typography gutterBottom variant="headline" component="h5">
                     {props.title}
                 </Typography>
                 <Typography component="p">

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectProduces, } from '@/redux/produceSlice'
 import { getProduces } from '@/redux/produceThunk'
 import { useEffect } from 'react'
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack'
+import { Link } from 'react-router-dom'
 
 export default function ProducesList() {
     const { produces, loading } = useSelector(selectProduces)
@@ -33,10 +34,13 @@ export default function ProducesList() {
                     } >
                         <Grid container spacing={2}>
                             {
-                                produces.map(x => (<Grid key={x.id} item xs={12} sm={6} md={4} lg={3}>
-                                    <ProduceCard props={x} key={x.id} />
-                                </Grid>)
-                                )
+                                produces.map(x => (
+                                    <Grid key={x.id} item xs={12} sm={6} md={4} lg={3}>
+                                        <Link to={`/produce/${x.id}`}>
+                                            <ProduceCard props={x} key={x.id} />
+                                        </Link>
+                                    </Grid>
+                                ))
                             }
                         </Grid>
                     </Box > :

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getProduces } from './produceThunk'
+import { getProduces, getProduceById } from './produceThunk'
 
 const name = 'produces'
 
@@ -19,6 +19,7 @@ export const produceSlice = createSlice({
         }
     },
     extraReducers: {
+        //getProduces
         [getProduces.pending]: (state) => {
             state.loading = true
         },
@@ -27,6 +28,19 @@ export const produceSlice = createSlice({
             state.produces = payload
         },
         [getProduces.rejected]: (state, action) => {
+            state.loading = false
+            state.errorMsg = action.payload
+        },
+
+        //getProduceById
+        [getProduceById.pending]: (state) => {
+            state.loading = true
+        },
+        [getProduceById.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.produce = payload
+        },
+        [getProduceById.rejected]: (state, action) => {
             state.loading = false
             state.errorMsg = action.payload
         },

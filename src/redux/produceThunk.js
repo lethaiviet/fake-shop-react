@@ -17,7 +17,20 @@ const getProduces = createAsyncThunk(
             return thunkApi.rejectWithValue(err.response.data)
         }
     }
-
 )
 
-export { getProduces }
+const getProduceById = createAsyncThunk(
+    'produce/getProduceById',
+
+    async (produceId, thunkApi) => {
+        try {
+            const res = await axios.get(GET_PRODUCES_API + `/${produceId}`)
+            return res.data
+        }
+        catch (err) {
+            return thunkApi.rejectWithValue(err.response.data)
+        }
+    }
+)
+
+export { getProduces, getProduceById }
